@@ -1,0 +1,17 @@
+.list {
+	background-color: #100e1d;
+	list-style: none;
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	color: white;
+	padding: 3rem 2rem 4rem 2rem;
+	justify-items: center;
+	row-gap: 32px;
+}
+
+@media only screen and (min-width: 768px) {
+	.list {
+		display: flex;
+		justify-content: space-around;
+	}
+}

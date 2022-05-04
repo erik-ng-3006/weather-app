@@ -1,0 +1,49 @@
+.highlight {
+	background-color: #100e1d;
+	padding: 0 1rem 3rem 1rem;
+}
+
+.highlight h2 {
+	font-size: 24px;
+	margin-bottom: 2rem;
+}
+
+.card {
+	margin-bottom: 2rem;
+	text-align: center;
+	padding: 3rem 0 3rem 0;
+}
+.card:last-child {
+	margin-bottom: 0;
+}
+
+.card h3 {
+	margin-bottom: 1rem;
+	font-size: 1rem;
+	font-weight: 500;
+}
+
+.card p {
+	font-weight: 700;
+	font-size: 64px;
+	margin-bottom: 1rem;
+}
+
+.card p span {
+	font-weight: 500;
+	font-size: 36px;
+}
+
+@media only screen and (min-width: 768px) {
+	.highlight {
+		padding: 4rem;
+	}
+	.grid-box {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		column-gap: 2rem;
+	}
+	.card:last-child {
+		margin-bottom: 2rem;
+	}
+}

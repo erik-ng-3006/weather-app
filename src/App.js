@@ -1,25 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
+import Footer from './components/Footer/Footer';
+import MoreWeatherContainer from './components/MoreWeatherContainer/MoreWeatherContainer';
+import NavBar from './components/NavBar/NavBar';
+import TodayWeatherContainer from './components/TodayWeatherContainer/TodayWeatherContainer';
+import { useSelector, useDispatch } from 'react-redux';
+import classes from './App.module.css';
+import { useEffect } from 'react';
+import { fetchData } from './store/weatherSlice';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+	const isShownNavBar = useSelector((state) => state.nav.isShownNavBar);
+	const dispatch = useDispatch();
+
+	useEffect(() => {
+		dispatch(fetchData());
+	}, [dispatch]);
+
+	return (
+		<main className={classes.app}>
+			{isShownNavBar && <NavBar />}
+			<TodayWeatherContainer />
+			<MoreWeatherContainer />
+			<Footer />
+		</main>
+	);
 }
 
 export default App;

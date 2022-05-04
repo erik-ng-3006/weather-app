@@ -1,0 +1,50 @@
+.detail {
+	font-weight: 500;
+	height: 100%;
+	text-align: center;
+}
+
+.cloud {
+	box-shadow: rgb(29 32 57 / 94%) 0px 0px 0px 2000px inset;
+	background-repeat: no-repeat;
+	background-image: url('/public/img/Cloud-background.png');
+	background-position: 70%;
+	background-size: cover;
+	padding: 5rem;
+}
+.cloud img {
+	max-width: 150px;
+}
+
+.degree {
+	color: white;
+	font-size: 144px;
+}
+
+.degree span {
+	font-size: 48px;
+}
+
+.state {
+	font-size: 36px;
+	font-weight: 600;
+	margin-bottom: 2rem;
+}
+
+.date {
+	font-size: 18px;
+	margin-bottom: 1.5rem;
+}
+
+.icon {
+	vertical-align: middle;
+}
+
+@media (min-width: 768px) {
+	.detail {
+		height: auto;
+	}
+	.degree {
+		margin-bottom: 1rem;
+	}
+}

@@ -1,0 +1,42 @@
+.list-item {
+	position: relative;
+}
+
+.list-item li {
+	padding: 1rem 1rem;
+	width: max-content;
+}
+
+.list-item h3 {
+	font-size: 1rem;
+	font-weight: 500;
+	text-align: center;
+	margin-bottom: 1rem;
+}
+
+.list-item img {
+	width: 100%;
+	height: auto;
+	margin-bottom: 3rem;
+}
+
+.list-item li div {
+	width: 80%;
+	position: absolute;
+	bottom: 10px;
+	display: flex;
+	justify-content: space-between;
+}
+
+.list-item li div span {
+	font-size: 12px;
+}
+.min-degree {
+	color: #a09fb1;
+}
+
+@media only screen and (min-width: 768px) {
+	.list-item li {
+		max-width: 120px;
+	}
+}

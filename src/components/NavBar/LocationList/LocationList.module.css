@@ -1,0 +1,25 @@
+.list {
+	list-style: none;
+}
+
+.list li {
+	display: flex;
+	justify-content: space-between;
+	padding: 1rem;
+	margin-bottom: 1rem;
+}
+
+.list li:hover {
+	border: 1px solid #616475;
+	cursor: pointer;
+}
+
+.list .icon {
+	opacity: 0;
+	font-size: 12px;
+	vertical-align: middle;
+}
+
+.list li:hover .icon {
+	opacity: 1;
+}

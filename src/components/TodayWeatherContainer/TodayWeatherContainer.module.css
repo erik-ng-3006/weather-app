@@ -1,0 +1,30 @@
+.container {
+	height: 100vh;
+	background-color: #1e213a;
+	color: #a09fb1;
+}
+
+.flex {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.icon {
+	margin-right: 1rem;
+	color: #e7e7eb;
+	background-color: #6e707a4d;
+	padding: 0.3rem;
+	border-radius: 50%;
+}
+
+.icon:hover {
+	cursor: pointer;
+	background-color: rgba(109, 111, 120, 0.5);
+}
+
+@media (min-width: 768px) {
+	.container {
+		height: 100%;
+	}
+}
