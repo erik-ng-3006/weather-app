@@ -30,11 +30,16 @@ const WeatherHighlight = () => {
 						{transformedWeatherData.humidity}
 						<span>%</span>
 					</p>
-					<div className={classes.flex}>
+					<div className={classes['flex-box']}>
+						<div className={classes['percent-num']}>
+							<p>0</p>
+							<p>50</p>
+							<p>100</p>
+						</div>
 						<div className={classes['humidity-bar']}>
 							<span style={style}></span>
 						</div>
-						<div>%</div>
+						<div className={classes.percent}>%</div>
 					</div>
 				</Card>
 				<Card className={classes.card}>
