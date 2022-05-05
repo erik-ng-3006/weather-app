@@ -28,12 +28,12 @@
 .state {
 	font-size: 36px;
 	font-weight: 600;
-	margin-bottom: 2rem;
+	margin-bottom: 0.5rem;
 }
 
 .date {
 	font-size: 18px;
-	margin-bottom: 1.5rem;
+	margin-bottom: 0.5rem;
 }
 
 .icon {
@@ -45,6 +45,12 @@
 		height: auto;
 	}
 	.degree {
-		margin-bottom: 1rem;
+		margin-bottom: 2.5rem;
+	}
+	.date {
+		margin-bottom: 2rem;
+	}
+	.state {
+		margin-bottom: 3rem;
 	}
 }

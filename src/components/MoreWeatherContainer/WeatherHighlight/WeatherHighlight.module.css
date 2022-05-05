@@ -33,6 +33,24 @@
 	font-weight: 500;
 	font-size: 36px;
 }
+.flex {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.humidity-bar {
+	border-radius: 80px;
+	width: 80%;
+	height: 0.5rem;
+	background-color: #e7e7eb;
+}
+
+.humidity-bar span {
+	display: block;
+	height: 0.5rem;
+	background-color: #ffec65;
+}
 
 @media only screen and (min-width: 768px) {
 	.highlight {
