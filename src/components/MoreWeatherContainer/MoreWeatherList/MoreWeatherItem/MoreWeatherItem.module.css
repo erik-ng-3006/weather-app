@@ -4,7 +4,6 @@
 
 .list-item li {
 	padding: 1rem 1rem;
-	width: max-content;
 }
 
 .list-item h3 {
@@ -15,7 +14,7 @@
 }
 
 .list-item img {
-	width: 100%;
+	width: 80%;
 	height: auto;
 	margin-bottom: 3rem;
 }
