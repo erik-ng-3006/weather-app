@@ -1,0 +1,21 @@
+.list-item {
+	display: flex;
+	justify-content: space-between;
+	padding: 1rem;
+	margin-bottom: 1rem;
+}
+
+.list-item:hover {
+	border: 1px solid #616475;
+	cursor: pointer;
+}
+
+.list-item .icon {
+	opacity: 0;
+	font-size: 12px;
+	vertical-align: middle;
+}
+
+.list-item:hover .icon {
+	opacity: 1;
+}

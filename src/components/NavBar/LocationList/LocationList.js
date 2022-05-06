@@ -1,21 +1,21 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
+import LocationItem from './LocationItem/LocationItem';
 import classes from './LocationList.module.css';
-import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
+
 const LocationList = () => {
+	const locations = useSelector((state) => state.location.locations);
 	return (
 		<ul className={classes.list}>
-			<li>
-				<p>London</p>
-				<ArrowForwardIosIcon className={classes.icon} />
-			</li>
-			<li>
-				<p>Barcelona</p>
-				<ArrowForwardIosIcon className={classes.icon} />
-			</li>
-			<li>
-				<p>Long Beach</p>
-				<ArrowForwardIosIcon className={classes.icon} />
-			</li>
+			{locations.map((location) => {
+				return (
+					<LocationItem
+						id={location.id}
+						name={location.name}
+						key={location.id}
+					/>
+				);
+			})}
 		</ul>
 	);
 };

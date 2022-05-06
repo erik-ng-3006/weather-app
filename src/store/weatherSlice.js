@@ -18,11 +18,11 @@ export const weatherSlice = createSlice({
 	},
 });
 
-export const fetchData = () => {
+export const fetchWeatherData = (locationId = '796597') => {
 	return async (dispatch) => {
 		const getData = async () => {
 			const response = await fetch(
-				'https://cors-anywhere.herokuapp.com/https://www.metaweather.com/api/location/796597/'
+				`https://cors-anywhere.herokuapp.com/https://www.metaweather.com/api/location/${locationId}`
 			);
 
 			if (!response.ok) {

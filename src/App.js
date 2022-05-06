@@ -5,14 +5,14 @@ import TodayWeatherContainer from './components/TodayWeatherContainer/TodayWeath
 import { useSelector, useDispatch } from 'react-redux';
 import classes from './App.module.css';
 import { useEffect } from 'react';
-import { fetchData } from './store/weatherSlice';
+import { fetchWeatherData } from './store/weatherSlice';
 
 function App() {
 	const isShownNavBar = useSelector((state) => state.nav.isShownNavBar);
 	const dispatch = useDispatch();
 
 	useEffect(() => {
-		dispatch(fetchData());
+		dispatch(fetchWeatherData());
 	}, [dispatch]);
 
 	return (

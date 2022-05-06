@@ -1,4 +1,4 @@
-.form {
+.form-box {
 	display: grid;
 	justify-content: space-between;
 	margin-bottom: 2.3rem;
@@ -24,7 +24,7 @@
 	margin-left: 1rem;
 }
 
-.form button {
+.form-box button {
 	background-color: rgb(60, 71, 233);
 	padding: 1rem;
 	border: none;
@@ -32,7 +32,7 @@
 	transition: background-color 300ms ease-out;
 }
 
-.form button:hover {
+.form-box button:hover {
 	cursor: pointer;
 	background-color: rgba(60, 71, 233, 0.5);
 }
