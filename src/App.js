@@ -6,9 +6,11 @@ import { useSelector, useDispatch } from 'react-redux';
 import classes from './App.module.css';
 import { useEffect } from 'react';
 import { fetchWeatherData } from './store/weatherSlice';
+import LoadingSpinner from './components/UI/LoadingSpinner';
 
 function App() {
-	const isShownNavBar = useSelector((state) => state.nav.isShownNavBar);
+	const isShownNavBar = useSelector((state) => state.ui.isShownNavBar);
+	const isLoading = useSelector((state) => state.ui.isLoading);
 	const dispatch = useDispatch();
 
 	useEffect(() => {
@@ -17,6 +19,7 @@ function App() {
 
 	return (
 		<main className={classes.app}>
+			{isLoading && <LoadingSpinner />}
 			{isShownNavBar && <NavBar />}
 			<TodayWeatherContainer />
 			<MoreWeatherContainer />

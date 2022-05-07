@@ -3,13 +3,13 @@ import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import classes from './LocationItem.module.css';
 import { fetchWeatherData } from '../../../../store/weatherSlice';
 import { useDispatch } from 'react-redux';
-import { navActions } from '../../../../store/navSlice';
+import { uiActions } from '../../../../store/uiSlice';
 
 const LocationItem = ({ name, id }) => {
 	const dispatch = useDispatch();
 	const onClickHandler = () => {
 		dispatch(fetchWeatherData(id));
-		dispatch(navActions.toggleNavBar());
+		dispatch(uiActions.toggleNavBar());
 	};
 
 	return (

@@ -1,11 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit';
-import navReducer from './navSlice';
+import uiReducer from './uiSlice';
 import weatherReducer from './weatherSlice';
 import locationReducer from './locationSlice';
 
 export const store = configureStore({
 	reducer: {
-		nav: navReducer,
+		ui: uiReducer,
 		weather: weatherReducer,
 		location: locationReducer,
 	},

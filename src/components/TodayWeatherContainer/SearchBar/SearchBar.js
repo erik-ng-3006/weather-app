@@ -1,11 +1,11 @@
 import React from 'react';
 import classes from './SearchBar.module.css';
 import { useDispatch } from 'react-redux';
-import { navActions } from '../../../store/navSlice';
+import { uiActions } from '../../../store/uiSlice';
 const SearchBar = () => {
 	const dispatch = useDispatch();
 	const onClickHandler = () => {
-		dispatch(navActions.toggleNavBar());
+		dispatch(uiActions.toggleNavBar());
 	};
 
 	return (

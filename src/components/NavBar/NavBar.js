@@ -4,12 +4,12 @@ import CloseIcon from '@mui/icons-material/Close';
 import LocationList from './LocationList/LocationList';
 import InputForm from './InputForm/InputForm';
 import { useDispatch } from 'react-redux';
-import { navActions } from '../../store/navSlice';
+import { uiActions } from '../../store/uiSlice';
 const NavBar = () => {
 	const dispatch = useDispatch();
 
 	const clickHandler = () => {
-		dispatch(navActions.toggleNavBar());
+		dispatch(uiActions.toggleNavBar());
 	};
 	return (
 		<div className={classes.nav}>
