@@ -3,7 +3,7 @@ import { uiActions } from './uiSlice';
 
 const initialState = {
 	data: [],
-	location: '',
+	tempScale: 'c',
 };
 
 export const weatherSlice = createSlice({
@@ -16,17 +16,30 @@ export const weatherSlice = createSlice({
 		setLocation(state, action) {
 			state.location = action.payload;
 		},
+		setTempScale(state, action) {
+			state.tempScale = action.payload;
+		},
 	},
 });
 
-export const fetchWeatherData = (locationId = '796597') => {
+export const fetchWeatherData = (locationInput = '796597') => {
 	return async (dispatch) => {
 		dispatch(uiActions.setIsLoading(true));
 
 		const getData = async () => {
-			const response = await fetch(
-				`https://mycorsproxy-crossdomainyz.herokuapp.com/https://www.metaweather.com/api/location/${locationId}`
-			);
+			let response;
+
+			if (typeof locationInput === 'string') {
+				response = await fetch(
+					`https://mycorsproxy-crossdomainyz.herokuapp.com/https://www.metaweather.com/api/location/${locationInput}`
+				);
+			} else {
+				const { latitude, longitude } = locationInput;
+				console.log(latitude);
+				response = await fetch(
+					`https://mycorsproxy-crossdomainyz.herokuapp.com/https://www.metaweather.com/api/location/search/?lattlong=${latitude},${longitude}`
+				);
+			}
 
 			if (!response.ok) {
 				throw new Error('Failed to get the data');
@@ -79,6 +92,10 @@ export const setImageUrl = (str = '') => {
 	const regex = /\s/;
 	str = str.replace(regex, '');
 	return `img/${str}.png`;
+};
+
+export const convertCelsiusToFahrenheit = (degree) => {
+	return Math.round((degree * 9) / 5 + 32);
 };
 
 export const weatherActions = weatherSlice.actions;

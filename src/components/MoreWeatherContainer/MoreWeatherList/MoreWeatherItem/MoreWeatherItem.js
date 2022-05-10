@@ -3,7 +3,15 @@ import classes from './MoreWeatherItem.module.css';
 import Card from '../../../UI/Card';
 import { convertDate } from '../../../../store/weatherSlice';
 import { setImageUrl } from '../../../../store/weatherSlice';
+import { useSelector } from 'react-redux';
+import { convertCelsiusToFahrenheit } from '../../../../store/weatherSlice';
+
 const MoreWeatherItem = (props) => {
+	const minTemp = Math.round(props.minTemp);
+	const maxTemp = Math.round(props.maxTemp);
+	const tempScale = useSelector((state) => state.weather.tempScale);
+	const isCelsius = tempScale === 'c';
+
 	return (
 		<Card key={props.id} className={classes['list-item']}>
 			<li>
@@ -11,12 +19,16 @@ const MoreWeatherItem = (props) => {
 				<img src={setImageUrl(props.img)} alt='weather forecast'></img>
 				<div>
 					<p>
-						{Math.round(props.maxTemp)}
-						<span>°C</span>
+						{isCelsius
+							? maxTemp
+							: convertCelsiusToFahrenheit(maxTemp)}
+						<span>{isCelsius ? '°C' : '°F'}</span>
 					</p>
 					<p className={classes['min-degree']}>
-						{Math.round(props.minTemp)}
-						<span>°C</span>
+						{isCelsius
+							? minTemp
+							: convertCelsiusToFahrenheit(minTemp)}
+						<span>{isCelsius ? '°C' : '°F'}</span>
 					</p>
 				</div>
 			</li>

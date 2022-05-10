@@ -1,0 +1,28 @@
+.buttons {
+	position: absolute;
+	top: 3rem;
+	right: 2rem;
+}
+
+.buttons button {
+	font-size: 1.125rem;
+	font-weight: 700;
+	border: none;
+	border-radius: 50%;
+	margin-left: 1rem;
+	padding: 0.7rem;
+	background-color: #585676;
+	transition: background-color 300ms ease-out;
+}
+
+.buttons button:hover {
+	cursor: pointer;
+	background-color: #e7e7eb;
+}
+
+.buttons .active {
+	background-color: #e7e7eb;
+}
+
+@media (min-width: 768px) {
+}

@@ -5,6 +5,7 @@ import MoreWeatherItem from './MoreWeatherItem/MoreWeatherItem';
 
 const MoreWeatherList = () => {
 	const weatherData = useSelector((state) => state.weather.data);
+	console.log(weatherData);
 	return (
 		<ul className={classes.list}>
 			{weatherData.slice(1).map((dayWeather) => {

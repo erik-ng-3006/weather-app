@@ -4,6 +4,7 @@ import classes from './WeatherDetail.module.css';
 import { useSelector } from 'react-redux';
 import { convertDate } from '../../../store/weatherSlice';
 import { setImageUrl } from '../../../store/weatherSlice';
+import { convertCelsiusToFahrenheit } from '../../../store/weatherSlice';
 
 const WeatherDetail = () => {
 	const location = useSelector((state) => state.weather.location);
@@ -11,6 +12,9 @@ const WeatherDetail = () => {
 	const transformedWeatherData = weatherData[0] || {};
 	const date = convertDate(transformedWeatherData['applicable_date']);
 	const url = setImageUrl(transformedWeatherData['weather_state_name']);
+	const temp = Math.round(transformedWeatherData['the_temp']);
+	const tempScale = useSelector((state) => state.weather.tempScale);
+	const isCelsius = tempScale === 'c';
 
 	return (
 		<div className={classes.detail}>
@@ -19,8 +23,8 @@ const WeatherDetail = () => {
 			</div>
 			<div>
 				<div className={classes.degree}>
-					{Math.round(transformedWeatherData['the_temp'])}
-					<span>°C</span>
+					{isCelsius ? temp : convertCelsiusToFahrenheit(temp)}
+					<span>{isCelsius ? '°C' : '°F'}</span>
 				</div>
 				<div className={classes.state}>
 					{transformedWeatherData['weather_state_name']}

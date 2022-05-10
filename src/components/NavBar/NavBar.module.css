@@ -5,6 +5,7 @@
 	min-height: 100vh;
 	position: fixed;
 	padding: 4rem 1rem 0 1rem;
+	animation: slide 300ms ease-out;
 }
 
 .icon {
@@ -20,5 +21,15 @@
 @media (min-width: 768px) {
 	.nav {
 		width: 33%;
+	}
+}
+
+@keyframes slide {
+	from {
+		transform: translateX(-100%);
+	}
+
+	to {
+		transform: translateX(0%);
 	}
 }

@@ -2,7 +2,8 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
 	locations: [],
-	curLocation: '',
+	curLocation: {},
+	curLocationLoaded: null,
 };
 
 export const locationSlice = createSlice({
@@ -11,6 +12,10 @@ export const locationSlice = createSlice({
 	reducers: {
 		setLocations(state, action) {
 			state.locations = action.payload;
+		},
+		setCurLocation(state, action) {
+			state.curLocation.latitude = action.payload.latitude;
+			state.curLocation.longitude = action.payload.longitude;
 		},
 	},
 });
@@ -44,6 +49,45 @@ export const searchLocations = (inputValue) => {
 			console.log(e);
 		}
 	};
+};
+
+export const getLocation = () => {
+	return (dispatch) => {
+		navigator.geolocation.getCurrentPosition(
+			(position) => {
+				dispatch(
+					locationSlice.actions.setCurLocation({
+						latitude: position.coords.latitude.toString(),
+						longitude: position.coords.longitude.toString(),
+					})
+				);
+			},
+			() => {}
+		);
+	};
+};
+
+export const setWindDirectionCompass = (dir) => {
+	const direction = dir.toLowerCase();
+	const compassDegrees = {
+		n: 0,
+		nne: 22.5,
+		ne: 45,
+		ene: 67.5,
+		e: 90,
+		ese: 112.5,
+		se: 135,
+		sse: 157.5,
+		s: 180,
+		ssw: 202.5,
+		sw: 225,
+		wsw: 247.5,
+		w: 270,
+		wnw: 292.5,
+		nw: 315,
+		nnw: 337.5,
+	};
+	return compassDegrees[direction];
 };
 
 export const locationActions = locationSlice.actions;

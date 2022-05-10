@@ -11,6 +11,7 @@ import LoadingSpinner from './components/UI/LoadingSpinner';
 function App() {
 	const isShownNavBar = useSelector((state) => state.ui.isShownNavBar);
 	const isLoading = useSelector((state) => state.ui.isLoading);
+	//const curLocation = useSelector((state) => state.location.curLocation);
 	const dispatch = useDispatch();
 
 	useEffect(() => {

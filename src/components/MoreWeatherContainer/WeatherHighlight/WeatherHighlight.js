@@ -2,12 +2,20 @@ import React from 'react';
 import classes from './WeatherHighlight.module.css';
 import Card from '../../UI/Card';
 import { useSelector } from 'react-redux';
+import NavigationIcon from '@mui/icons-material/Navigation';
+import { setWindDirectionCompass } from '../../../store/locationSlice';
 
 const WeatherHighlight = () => {
 	const weatherData = useSelector((state) => state.weather.data);
 	const transformedWeatherData = weatherData[0] || {};
-	const style = {
+
+	const humidityStyle = {
 		width: `${transformedWeatherData.humidity}%`,
+	};
+	const windDirection =
+		transformedWeatherData['wind_direction_compass'] || '';
+	const windCompassStyle = {
+		transform: `rotate(${setWindDirectionCompass(windDirection)}deg)`,
 	};
 
 	return (
@@ -21,7 +29,11 @@ const WeatherHighlight = () => {
 						<span>mph</span>
 					</p>
 					<div>
-						{transformedWeatherData['wind_direction_compass']}
+						<NavigationIcon
+							className={classes.icon}
+							style={windCompassStyle}
+						/>
+						<span>{windDirection}</span>
 					</div>
 				</Card>
 				<Card className={classes.card}>
@@ -37,7 +49,7 @@ const WeatherHighlight = () => {
 							<p>100</p>
 						</div>
 						<div className={classes['humidity-bar']}>
-							<span style={style}></span>
+							<span style={humidityStyle}></span>
 						</div>
 						<div className={classes.percent}>%</div>
 					</div>
