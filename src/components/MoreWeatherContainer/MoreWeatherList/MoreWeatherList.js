@@ -1,22 +1,36 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+//import { useGetDailyWeatherQuery } from '../../../store/weatherSlice';
 import classes from './MoreWeatherList.module.css';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import MoreWeatherItem from './MoreWeatherItem/MoreWeatherItem';
+import {
+	useGetDailyWeatherQuery,
+	weatherActions,
+} from '../../../store/weatherSlice';
 
 const MoreWeatherList = () => {
-	const weatherData = useSelector((state) => state.weather.data);
-	console.log(weatherData);
+	//const [dailyWeather, setDailyWeather] = useState();
+	const dispatch = useDispatch();
+	const location = useSelector((state) => state.weather.location);
+	const dailyWeatherData = useSelector(
+		(state) => state.weather.dailyWeatherData
+	);
+	const { data } = useGetDailyWeatherQuery(location?.id);
+
+	useEffect(() => {
+		dispatch(weatherActions.setDailyWeatherData(data?.forecast));
+	}, [data, dispatch]);
+
 	return (
 		<ul className={classes.list}>
-			{weatherData.slice(1).map((dayWeather) => {
+			{dailyWeatherData?.slice(0, 5).map((dayWeather, index) => {
 				return (
 					<MoreWeatherItem
-						key={dayWeather.id}
-						date={dayWeather['applicable_date']}
-						id={dayWeather.id}
-						minTemp={dayWeather['min_temp']}
-						maxTemp={dayWeather['max_temp']}
-						img={dayWeather['weather_state_name']}
+						key={index}
+						date={dayWeather?.date}
+						minTemp={dayWeather?.minTemp}
+						maxTemp={dayWeather?.maxTemp}
+						img={dayWeather?.symbolPhrase}
 					/>
 				);
 			})}

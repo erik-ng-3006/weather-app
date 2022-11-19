@@ -7,15 +7,15 @@ import { setWindDirectionCompass } from '../../../store/locationSlice';
 
 const WeatherHighlight = () => {
 	const weatherData = useSelector((state) => state.weather.data);
-	const transformedWeatherData = weatherData[0] || {};
 
 	const humidityStyle = {
-		width: `${transformedWeatherData.humidity}%`,
+		width: `${weatherData?.relHumidity}%`,
 	};
-	const windDirection =
-		transformedWeatherData['wind_direction_compass'] || '';
+
 	const windCompassStyle = {
-		transform: `rotate(${setWindDirectionCompass(windDirection)}deg)`,
+		transform: `rotate(${setWindDirectionCompass(
+			weatherData?.windDirString
+		)}deg)`,
 	};
 
 	return (
@@ -25,21 +25,20 @@ const WeatherHighlight = () => {
 				<Card className={classes.card}>
 					<h3>Wind status</h3>
 					<p>
-						{Math.round(transformedWeatherData['wind_speed'])}
-						<span>mph</span>
+						{weatherData?.windSpeed} <span>mph</span>
 					</p>
 					<div>
 						<NavigationIcon
 							className={classes.icon}
 							style={windCompassStyle}
 						/>
-						<span>{windDirection}</span>
+						<span>{weatherData?.windDirString}</span>
 					</div>
 				</Card>
 				<Card className={classes.card}>
 					<h3>Humidity</h3>
 					<p>
-						{transformedWeatherData.humidity}
+						{weatherData?.relHumidity}
 						<span>%</span>
 					</p>
 					<div className={classes['flex-box']}>
@@ -57,15 +56,13 @@ const WeatherHighlight = () => {
 				<Card className={classes.card}>
 					<h3>Visibility</h3>
 					<p>
-						{Math.round(transformedWeatherData.visibility)}{' '}
-						<span>miles</span>
+						{weatherData?.visibility} <span>m</span>
 					</p>
 				</Card>
 				<Card className={classes.card}>
 					<h3>Air Pressure</h3>
 					<p>
-						{Math.round(transformedWeatherData['air_pressure'])}{' '}
-						<span>mb</span>{' '}
+						{weatherData?.pressure} <span>hPa</span>{' '}
 					</p>
 				</Card>
 			</div>

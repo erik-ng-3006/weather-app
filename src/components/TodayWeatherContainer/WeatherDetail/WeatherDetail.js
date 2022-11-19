@@ -3,36 +3,45 @@ import LocationOnIcon from '@mui/icons-material/LocationOn';
 import classes from './WeatherDetail.module.css';
 import { useSelector } from 'react-redux';
 import { convertDate } from '../../../store/weatherSlice';
-import { setImageUrl } from '../../../store/weatherSlice';
 import { convertCelsiusToFahrenheit } from '../../../store/weatherSlice';
 
 const WeatherDetail = () => {
-	const location = useSelector((state) => state.weather.location);
-	const weatherData = useSelector((state) => state.weather.data);
-	const transformedWeatherData = weatherData[0] || {};
-	const date = convertDate(transformedWeatherData['applicable_date']);
-	const url = setImageUrl(transformedWeatherData['weather_state_name']);
-	const temp = Math.round(transformedWeatherData['the_temp']);
+	const locationsData = useSelector((state) => state.weather.location);
+	const currentWeatherData = useSelector((state) => state.weather.data);
 	const tempScale = useSelector((state) => state.weather.tempScale);
 	const isCelsius = tempScale === 'c';
+
+	console.log(locationsData);
 
 	return (
 		<div className={classes.detail}>
 			<div className={classes.cloud}>
-				<img src={url} alt='weather today'></img>
+				<img
+					src={`/img/${currentWeatherData?.symbolPhrase?.replaceAll(
+						' ',
+						''
+					)}.png`}
+					alt='weather today'
+				></img>
 			</div>
 			<div>
 				<div className={classes.degree}>
-					{isCelsius ? temp : convertCelsiusToFahrenheit(temp)}
+					{isCelsius
+						? currentWeatherData?.temperature
+						: convertCelsiusToFahrenheit(
+								currentWeatherData?.temperature
+						  )}
 					<span>{isCelsius ? '°C' : '°F'}</span>
 				</div>
 				<div className={classes.state}>
-					{transformedWeatherData['weather_state_name']}
+					{currentWeatherData?.symbolPhrase}
 				</div>
-				<div className={classes.date}>{`Today • ${date}`}</div>
+				<div className={classes.date}>{`Today • ${convertDate(
+					currentWeatherData?.time
+				)}`}</div>
 				<div>
 					<LocationOnIcon className={classes.icon} />
-					{location}
+					{locationsData?.name}
 				</div>
 			</div>
 		</div>

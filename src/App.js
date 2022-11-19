@@ -2,21 +2,28 @@ import Footer from './components/Footer/Footer';
 import MoreWeatherContainer from './components/MoreWeatherContainer/MoreWeatherContainer';
 import NavBar from './components/NavBar/NavBar';
 import TodayWeatherContainer from './components/TodayWeatherContainer/TodayWeatherContainer';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import classes from './App.module.css';
-import { useEffect } from 'react';
-import { fetchWeatherData } from './store/weatherSlice';
+import { weatherActions } from './store/weatherSlice';
+import {
+	useGetLocationByNameQuery,
+	useGetCurrentWeatherQuery,
+} from './store/weatherSlice';
 import LoadingSpinner from './components/UI/LoadingSpinner';
+import { useEffect } from 'react';
 
 function App() {
 	const isShownNavBar = useSelector((state) => state.ui.isShownNavBar);
-	const isLoading = useSelector((state) => state.ui.isLoading);
-	//const curLocation = useSelector((state) => state.location.curLocation);
 	const dispatch = useDispatch();
 
+	const { data: locationData } = useGetLocationByNameQuery('prague');
+	const { data: currentWeatherData, isLoading } =
+		useGetCurrentWeatherQuery('103067696');
+
 	useEffect(() => {
-		dispatch(fetchWeatherData());
-	}, [dispatch]);
+		dispatch(weatherActions.setWeatherData(currentWeatherData?.current));
+		dispatch(weatherActions.setLocation(locationData?.locations[0]));
+	}, [currentWeatherData, locationData, dispatch]);
 
 	return (
 		<main className={classes.app}>

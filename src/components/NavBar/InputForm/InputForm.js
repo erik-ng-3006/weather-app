@@ -1,26 +1,37 @@
-import React from 'react';
+import React, { useState } from 'react';
 import classes from './InputForm.module.css';
 import SearchIcon from '@mui/icons-material/Search';
 import { useDispatch } from 'react-redux';
-import { useRef } from 'react';
-import { searchLocations } from '../../../store/locationSlice';
+import {
+	useGetLocationByNameQuery,
+	weatherActions,
+} from '../../../store/weatherSlice';
 
 const InputForm = () => {
-	const inputRef = useRef('');
+	const [enteredLocation, setEnteredLocation] = useState();
 	const dispatch = useDispatch();
+	const { data } = useGetLocationByNameQuery(enteredLocation);
+
+	const inputChangeHandler = (e) => {
+		setEnteredLocation(e.target.value);
+	};
 
 	const formSubmitHandler = (e) => {
 		e.preventDefault();
-		dispatch(searchLocations(inputRef.current.value));
+		dispatch(weatherActions.setSearchedLocations(data?.locations));
 	};
 
 	return (
 		<form className={classes['form-box']} onSubmit={formSubmitHandler}>
 			<div className={classes['form-control']}>
 				<SearchIcon className={classes.icon} />
-				<input placeholder='search location' ref={inputRef} />
+				<input
+					placeholder='search location'
+					value={enteredLocation}
+					onChange={inputChangeHandler}
+				/>
 			</div>
-			<button>Search</button>
+			<button type='submit'>Search</button>
 		</form>
 	);
 };

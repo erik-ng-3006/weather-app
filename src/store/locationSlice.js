@@ -68,7 +68,7 @@ export const getLocation = () => {
 };
 
 export const setWindDirectionCompass = (dir) => {
-	const direction = dir.toLowerCase();
+	const direction = dir?.toLowerCase();
 	const compassDegrees = {
 		n: 0,
 		nne: 22.5,

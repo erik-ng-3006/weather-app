@@ -5,6 +5,7 @@ import LocationList from './LocationList/LocationList';
 import InputForm from './InputForm/InputForm';
 import { useDispatch } from 'react-redux';
 import { uiActions } from '../../store/uiSlice';
+
 const NavBar = () => {
 	const dispatch = useDispatch();
 
