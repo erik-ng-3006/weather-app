@@ -9,10 +9,12 @@ import {
 
 const InputForm = () => {
 	const [enteredLocation, setEnteredLocation] = useState();
+	const [skip, setSkip] = useState(true);
 	const dispatch = useDispatch();
-	const { data } = useGetLocationByNameQuery(enteredLocation);
+	const { data } = useGetLocationByNameQuery(enteredLocation, { skip });
 
 	const inputChangeHandler = (e) => {
+		setSkip(false);
 		setEnteredLocation(e.target.value);
 	};
 

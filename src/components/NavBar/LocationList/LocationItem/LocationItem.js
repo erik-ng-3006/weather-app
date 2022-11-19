@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import classes from './LocationItem.module.css';
 import { useDispatch } from 'react-redux';
@@ -11,15 +11,12 @@ import {
 } from '../../../../store/weatherSlice';
 
 const LocationItem = ({ name, country, id }) => {
-	const [skip, setSkip] = useState(false);
 	const dispatch = useDispatch();
-	const { data: weatherData } = useGetCurrentWeatherQuery(id, { skip });
-	const { data: dailyWeatherData } = useGetDailyWeatherQuery(id, { skip });
-	const { data: locationData } = useGetLocationByNameQuery(name, {
-		skip,
-	});
+	const { data: weatherData } = useGetCurrentWeatherQuery(id);
+	const { data: dailyWeatherData } = useGetDailyWeatherQuery(id);
+	const { data: locationData } = useGetLocationByNameQuery(name);
+
 	const onClickHandler = () => {
-		setSkip(true);
 		dispatch(uiActions.toggleNavBar());
 		dispatch(weatherActions.setWeatherData(weatherData?.current));
 		dispatch(
