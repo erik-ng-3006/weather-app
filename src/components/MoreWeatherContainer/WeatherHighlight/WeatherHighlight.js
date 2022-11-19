@@ -3,7 +3,7 @@ import classes from './WeatherHighlight.module.css';
 import Card from '../../UI/Card';
 import { useSelector } from 'react-redux';
 import NavigationIcon from '@mui/icons-material/Navigation';
-import { setWindDirectionCompass } from '../../../store/locationSlice';
+import { setWindDirectionCompass } from '../../../store/weatherSlice';
 
 const WeatherHighlight = () => {
 	const weatherData = useSelector((state) => state.weather.data);
