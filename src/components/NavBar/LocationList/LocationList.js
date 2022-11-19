@@ -5,7 +5,6 @@ import classes from './LocationList.module.css';
 
 const LocationList = () => {
 	const locations = useSelector((state) => state.weather.searchedLocations);
-	//console.log(locations);
 	let content;
 
 	if (locations?.length === 0) {

@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-//import { useGetDailyWeatherQuery } from '../../../store/weatherSlice';
 import classes from './MoreWeatherList.module.css';
 import { useDispatch, useSelector } from 'react-redux';
 import MoreWeatherItem from './MoreWeatherItem/MoreWeatherItem';
@@ -9,7 +8,6 @@ import {
 } from '../../../store/weatherSlice';
 
 const MoreWeatherList = () => {
-	//const [dailyWeather, setDailyWeather] = useState();
 	const dispatch = useDispatch();
 	const location = useSelector((state) => state.weather.location);
 	const dailyWeatherData = useSelector(

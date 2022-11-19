@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import classes from './LocationItem.module.css';
-//import { fetchWeatherData } from '../../../../store/weatherSlice';
 import { useDispatch } from 'react-redux';
 import { uiActions } from '../../../../store/uiSlice';
 import {
@@ -28,8 +27,6 @@ const LocationItem = ({ name, country, id }) => {
 		);
 		dispatch(weatherActions.setLocation(locationData?.locations[0]));
 	};
-
-	console.log(locationData);
 
 	return (
 		<li className={classes['list-item']} onClick={onClickHandler}>

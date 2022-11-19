@@ -11,8 +11,6 @@ const WeatherDetail = () => {
 	const tempScale = useSelector((state) => state.weather.tempScale);
 	const isCelsius = tempScale === 'c';
 
-	console.log(locationsData);
-
 	return (
 		<div className={classes.detail}>
 			<div className={classes.cloud}>
